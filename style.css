@@ -5,6 +5,7 @@ html {
     font-weight: 500;
 }
 body {
+    height: 856px;
     width: 430px;
     margin: 10px auto 10px auto;
 }

@@ -8,8 +8,7 @@ html {
 
 #main-wrapper {
     margin: auto;
-    height: 720px;
-    width: 360px;
+    height: 1000px;
     background: rgb(230,80,55);
 }
 #header {

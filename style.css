@@ -4,15 +4,16 @@ html {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
-
+body {
+    width: 430px;
+    margin: 10px auto 10px auto;
+}
 
 #main-wrapper {
-    margin: auto;
-    height: 1000px;
     background: rgb(230,80,55);
 }
 #header {
-    height: 75px;
+    height: 10vh;
     background-color: rgb(230,80,55);
     color: rgb(242,242,242);
     padding: 5px;
@@ -23,11 +24,11 @@ html {
     margin: 10px;
 }
 #model-viewer {
-    height: 75%;
+    height: 75vh;
     background-color: rgb(242,242,242);
 }
 #footer {
-    height: 125px;
+    height: 10vh;
     background-color: rgb(230,80,55);
     font-size: 10px;
     color: rgb(242,242,242);

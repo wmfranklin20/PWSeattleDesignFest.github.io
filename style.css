@@ -17,6 +17,10 @@ button {
     height: 50px;
     font-size: 28px;
     font-weight: 600;
+    margin: 0px 5px 0px 5px;
+}
+.float {
+    box-shadow: 5px 5px 0px rgba(35,35,35,.35);
 }
 
 .text-large {
@@ -46,8 +50,9 @@ button {
     margin: 5px auto 5px auto;
 }
 #model-viewer {
-    height: 75vh;
+    height: 700px;
     background-color: rgb(242,242,242);
+    margin: 10px;
 }
 #buttons {
     display: grid;
@@ -69,5 +74,5 @@ button {
     border-radius: 10px;
 }
 #footer-text {
-    padding: 10px;
+    padding: 5px;
 }

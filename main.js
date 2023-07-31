@@ -49,9 +49,12 @@ function mainViewer() {
     /*Controls import*/
     /*let controls = new OrbitControls ( camera, renderer.domElement);*/
 
+    /*Lighting setup*/
+    /*Ambient Light for basic scene lighting*/
     const ambientLight = new THREE.AmbientLight('rgb(255,255,255', 0.65);
     scene.add(ambientLight);
 
+    /*Primary spot light*/
     const spotColor = new THREE.Color ( "rgb(255,255,255)" );
     const spotLight = new THREE.SpotLight ( spotColor );
     scene.add(spotLight);
@@ -69,13 +72,10 @@ function mainViewer() {
     spotLight.shadow.mapSize.width = 1024 * 5;
     spotLight.shadow.mapSize.height = 1024 * 5;
 
+    /*Backlight*/
     const backdirectionalLight = new THREE.DirectionalLight(0xffffff, 1.25);
     backdirectionalLight.position.set(50, -50, 75);
     scene.add(backdirectionalLight);
-
-    /*const mesh = new THREE.Mesh ( new THREE.PlaneGeometry (200,200), new THREE.MeshPhongMaterial ( { color: 'white'}));
-    mesh.receiveShadow = true;
-    scene.add (mesh);*/
 
 
     /*Rhino Model Importer*/

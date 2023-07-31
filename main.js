@@ -43,27 +43,13 @@ function mainViewer() {
         10000
     );
     camera.position.set (35,35,35);
-    camera.up.set(0,0,1);
-        
+    camera.up = new THREE.Vector3 (0,0,1);
+    camera.lookAt (0,0,15);
+
     /*Controls import*/
-    let controls = new OrbitControls ( camera, renderer.domElement);
+    /*let controls = new OrbitControls ( camera, renderer.domElement);*/
 
-    /*Rhino Model Importer*/
-    const loader = new Rhino3dmLoader();
-    loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.15.0/');
-    loader.load ('public/PW-GLY_SDF-Pavillion-Model.3dm', function (object) {
-        object.traverse( function (child) {
-            if ( child.isMesh ) {
-                child.castShadow = true;
-                child.recieveShadow = true;
-            } else {
-                console.log( child.type );
-            }
-        });
-        scene.add(object);
-    });
-
-    const ambientLight = new THREE.AmbientLight('white', 1.15);
+    const ambientLight = new THREE.AmbientLight('rgb(255,255,255', 0.65);
     scene.add(ambientLight);
 
     const spotColor = new THREE.Color ( "rgb(255,255,255)" );
@@ -83,9 +69,29 @@ function mainViewer() {
     spotLight.shadow.mapSize.width = 1024 * 5;
     spotLight.shadow.mapSize.height = 1024 * 5;
 
-    const backdirectionalLight = new THREE.DirectionalLight(0xffffff, .25);
+    const backdirectionalLight = new THREE.DirectionalLight(0xffffff, 1.25);
     backdirectionalLight.position.set(50, -50, 75);
     scene.add(backdirectionalLight);
+
+    /*const mesh = new THREE.Mesh ( new THREE.PlaneGeometry (200,200), new THREE.MeshPhongMaterial ( { color: 'white'}));
+    mesh.receiveShadow = true;
+    scene.add (mesh);*/
+
+
+    /*Rhino Model Importer*/
+    const loader = new Rhino3dmLoader();
+    loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.15.0/');
+    loader.load ('public/PW-GLY_SDF-Pavillion-Model.3dm', function (object) {
+        object.traverse( function (child) {
+            if ( child.isMesh ) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            } else {
+                console.log( child.type );
+            }
+        });
+        scene.add(object);
+    });
 
     function render () {
         camera.updateMatrixWorld();

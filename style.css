@@ -37,7 +37,7 @@ button {
     padding: 10px;
 }
 #header {
-    height: 80px;
+    height: 75px;
     background-color: rgb(230,80,55);
     color: rgb(242,242,242);
     padding: 5px;
@@ -47,10 +47,10 @@ button {
 }
 #header-text {
     height: auto;
-    margin: 5px auto 5px auto;
+    margin: 2.5px auto 2.5px auto;
 }
 #model-viewer {
-    height: 700px;
+    height: 600px;
     background-color: rgb(242,242,242);
     margin: 10px;
 }

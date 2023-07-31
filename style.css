@@ -9,29 +9,65 @@ body {
     width: 430px;
     margin: 10px auto 10px auto;
 }
+button {
+    background: rgb(230,80,55);
+    color: rgb(242,242,242);
+    border: 0px;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.text-large {
+    font-size: 28px;
+    font-weight: 600;
+}
+.text-medium {
+    font-size: 18px;
+    font-weight: 300;
+}
 
 #main-wrapper {
-    background: rgb(230,80,55);
+    background: rgb(242,242,242);
+    padding: 10px;
 }
 #header {
-    height: 10vh;
+    height: 80px;
     background-color: rgb(230,80,55);
     color: rgb(242,242,242);
     padding: 5px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
 }
 #header-text {
-    text-align: center;
-    padding: 0px;
-    margin: 10px;
+    height: auto;
+    margin: 5px auto 5px auto;
 }
 #model-viewer {
     height: 75vh;
     background-color: rgb(242,242,242);
 }
+#buttons {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 0px 0px 10px 0px;
+}
+#back {
+    grid-column: 0 / 1;
+}
+#next {
+    grid-column: 2 / 3;
+}
 #footer {
-    height: 10vh;
+    height: 100px;
     background-color: rgb(230,80,55);
     font-size: 10px;
     color: rgb(242,242,242);
     text-align: center;
+    border-radius: 10px;
+}
+#footer-text {
+    padding: 10px;
 }

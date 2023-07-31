@@ -44,7 +44,7 @@ function mainViewer() {
     );
     camera.position.set (35,35,35);
     camera.up = new THREE.Vector3 (0,0,1);
-    camera.lookAt (0,0,15);
+    camera.lookAt (0,0,10);
 
     /*Controls import*/
     /*let controls = new OrbitControls ( camera, renderer.domElement);*/

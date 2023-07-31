@@ -18,6 +18,9 @@ button {
     font-size: 24px;
     font-weight: 600;
     margin: 0px 5px 0px 5px;
+    animation-name: fadeIn;
+    animation-duration: 2.5s;
+    animation-timing-function: ease;
 }
 .float {
     box-shadow: 5px 5px 0px rgba(35,35,35,.35);
@@ -44,6 +47,13 @@ button {
     border-radius: 10px;
     padding: 10px;
     text-align: center;
+    animation-name: fadeIn;
+    animation-duration: 2.5s;
+    animation-timing-function: ease;
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 #header-text {
     height: auto;
@@ -72,6 +82,9 @@ button {
     color: rgb(242,242,242);
     text-align: center;
     border-radius: 10px;
+    animation-name: fadeIn;
+    animation-duration: 2.5s;
+    animation-timing-function: ease;
 }
 #footer-text {
     padding: 5px;

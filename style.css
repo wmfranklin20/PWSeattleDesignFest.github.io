@@ -14,8 +14,8 @@ button {
     color: rgb(242,242,242);
     border: 0px;
     border-radius: 10px;
-    height: 50px;
-    font-size: 28px;
+    height: 35px;
+    font-size: 24px;
     font-weight: 600;
     margin: 0px 5px 0px 5px;
 }
@@ -37,7 +37,7 @@ button {
     padding: 10px;
 }
 #header {
-    height: 75px;
+    height: 65px;
     background-color: rgb(230,80,55);
     color: rgb(242,242,242);
     padding: 5px;
@@ -47,7 +47,7 @@ button {
 }
 #header-text {
     height: auto;
-    margin: 2.5px auto 2.5px auto;
+    margin: -5px auto 0px auto;
 }
 #model-viewer {
     height: 600px;

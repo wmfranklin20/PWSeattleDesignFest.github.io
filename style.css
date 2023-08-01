@@ -38,8 +38,8 @@ button {
     font-weight: 200;
 }
 #main-wrapper {
-    background: rgb(249,245,237);
-    background: url('././public/topo-background.png');
+    background: rgb(250,250,250);
+    /*background: url('././public/topo-background.png');*/
     background-size: contain;
 }
 #header {

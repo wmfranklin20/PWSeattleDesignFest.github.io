@@ -47,11 +47,12 @@ function mainViewer() {
     camera.lookAt (0,0,10);
 
     /*Controls import*/
-    /*let controls = new OrbitControls ( camera, renderer.domElement);*/
+    let controls = new OrbitControls ( camera, renderer.domElement);
 
     /*Lighting setup*/
     /*Ambient Light for basic scene lighting*/
-    const ambientLight = new THREE.AmbientLight('rgb(255,255,255', 0.65);
+    const ambientColor = new THREE.Color ( "rgb(255,255,255)" )
+    const ambientLight = new THREE.AmbientLight(ambientColor, 0.65);
     scene.add(ambientLight);
 
     /*Primary spot light*/
@@ -77,20 +78,24 @@ function mainViewer() {
     backdirectionalLight.position.set(50, -50, 75);
     scene.add(backdirectionalLight);
 
+    /*const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 200,200), new THREE.MeshPhongMaterial ({color:'white'}));
+    scene.add(baseMesh);
+    baseMesh.receiveShadow = true;*/
+
+    /*const baseMat = new THREE.MeshPhongMaterial( {color: 'white'} );*/
 
     /*Rhino Model Importer*/
     const loader = new Rhino3dmLoader();
     loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.15.0/');
     loader.load ('public/PW-GLY_SDF-Pavillion-Model.3dm', function (object) {
         object.traverse( function (child) {
-            if ( child.isMesh ) {
-                child.castShadow = true;
-                child.receiveShadow = true;
-            } else {
-                console.log( child.type );
-            }
+            child.castShadow = true;
+            child.receiveShadow = true;
+            console.log(child.type);
+            console.log(child.userData.attributes);
+            /*child.material = baseMat;*/
         });
-        scene.add(object);
+        scene.add(object);     
     });
 
     function render () {

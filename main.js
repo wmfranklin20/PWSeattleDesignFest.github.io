@@ -3,16 +3,18 @@ import { OrbitControls } from 'https://unpkg.com/three@0.154.0/examples/jsm/cont
 import { GLTFLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/GLTFLoader.js';
 import { Rhino3dmLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/3DMLoader.js';
 
-/*
+
 function updateWindowSize () {
-    const sizeDiv = document.getElementById('sizediv');
     const width = window.innerWidth;
+    const mainViewer = document.getElementById('model-viewer');
+    mainViewer.style.width = (width - 20) + 'px';
     const height = window.innerHeight;
-    sizeDiv.textContent = `Window size: ${width} x ${height}`;
+    mainViewer.style.height = (height - 65 - 165) + 'px';
+    console.log(`Window size: ${width} x ${height}`);
 }
 updateWindowSize();
 window.addEventListener('resize', updateWindowSize);
-*/
+
 function mainViewer() {
 
     let scene = new THREE.Scene();
@@ -97,7 +99,7 @@ function mainViewer() {
             /*child.material = baseMat;*/
         });
         scene.add(object);
-        function animate () {
+        /*function animate () {
             let move = 0
             const incrementStep = 0.1;
             if (move < 5) {
@@ -109,7 +111,7 @@ function mainViewer() {
             renderer.render (scene, camera);
             requestAnimationFrame ( animate );
         };
-        animate();
+        animate();*/
     });
 
     loader.load ('public/Scaffolding.3dm', function (object) {
@@ -127,7 +129,7 @@ function mainViewer() {
         });
         scene.add(object);
     });
-    
+
     loader.load ('public/Curtains.3dm', function (object) {
         object.traverse( function (child) {
             child.castShadow = true;

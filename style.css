@@ -8,14 +8,15 @@ body {
     height: 856px;
     width: 430px;
     margin: 10px auto 10px auto;
+    background: rgb(249,245,237);
 }
 button {
     background: rgb(230,80,55);
     color: rgb(242,242,242);
     border: 0px;
-    border-radius: 10px;
+    border-radius: 20px;
     height: 35px;
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 600;
     margin: 0px 5px 0px 5px;
     animation-name: fadeIn;
@@ -23,7 +24,7 @@ button {
     animation-timing-function: ease;
 }
 .float {
-    box-shadow: 5px 5px 0px rgba(35,35,35,.35);
+    box-shadow: 3px 3px 2px rgba(35,35,35,.15);
 }
 
 .text-large {
@@ -36,20 +37,22 @@ button {
 }
 
 #main-wrapper {
-    background: rgb(242,242,242);
-    padding: 10px;
+    background: rgb(249,245,237);
+    background: url('././public/topo-background.png');
+    background-size: contain;
 }
 #header {
     height: 65px;
     background-color: rgb(230,80,55);
     color: rgb(242,242,242);
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     padding: 10px;
     text-align: center;
     animation-name: fadeIn;
     animation-duration: 2.5s;
     animation-timing-function: ease;
+    box-shadow: 0px 3px 2px rgba(35,35,35,.15);
 }
 @keyframes fadeIn {
     0% {opacity: 0;}
@@ -61,7 +64,6 @@ button {
 }
 #model-viewer {
     height: 600px;
-    background-color: rgb(242,242,242);
     margin: 10px;
 }
 #buttons {
@@ -76,15 +78,16 @@ button {
     grid-column: 2 / 3;
 }
 #footer {
-    height: 100px;
+    height: 80px;
     background-color: rgb(230,80,55);
     font-size: 10px;
     color: rgb(242,242,242);
     text-align: center;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
     animation-name: fadeIn;
     animation-duration: 2.5s;
     animation-timing-function: ease;
+    box-shadow: 0px -3px 2px rgba(35,35,35,.15);
 }
 #footer-text {
     padding: 5px;

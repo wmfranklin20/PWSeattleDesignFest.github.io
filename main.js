@@ -42,7 +42,7 @@ function mainViewer() {
         0.1,
         10000
     );
-    camera.position.set (35,35,35);
+    camera.position.set (30,30,35);
     camera.up = new THREE.Vector3 (0,0,1);
     camera.lookAt (0,0,10);
 
@@ -102,5 +102,14 @@ function mainViewer() {
         render();
     }
     animate();
+
+    window.addEventListener('resize', handleWindowResize);
+    function handleWindowResize() {
+        const wrapperWidth = wrapper.clientWidth;
+        const wrapperHeight = wrapper.clientHeight;
+        camera.aspect = wrapperWidth / wrapperHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(wrapperWidth, wrapperHeight);
+    }
 };
 mainViewer();

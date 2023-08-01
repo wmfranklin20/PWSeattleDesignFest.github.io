@@ -87,7 +87,8 @@ function mainViewer() {
     /*Rhino Model Importer*/
     const loader = new Rhino3dmLoader();
     loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.15.0/');
-    loader.load ('public/PW-GLY_SDF-Pavillion-Model.3dm', function (object) {
+  
+    loader.load ('public/Heat-Surfaces.3dm', function (object) {
         object.traverse( function (child) {
             child.castShadow = true;
             child.receiveShadow = true;
@@ -95,7 +96,44 @@ function mainViewer() {
             console.log(child.userData.attributes);
             /*child.material = baseMat;*/
         });
-        scene.add(object);     
+        scene.add(object);
+        function animate () {
+            let move = 0
+            const incrementStep = 0.1;
+            if (move < 5) {
+                move += incrementStep;
+            } else {
+                move = 0;
+            }
+            object.translateZ(move);
+            renderer.render (scene, camera);
+            requestAnimationFrame ( animate );
+        };
+        animate();
+    });
+
+    loader.load ('public/Scaffolding.3dm', function (object) {
+        object.traverse( function (child) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+        });
+        scene.add(object);
+    });
+
+    loader.load ('public/Frame-Fabric.3dm', function (object) {
+        object.traverse( function (child) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+        });
+        scene.add(object);
+    });
+    
+    loader.load ('public/Curtains.3dm', function (object) {
+        object.traverse( function (child) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+        });
+        scene.add(object);
     });
 
     function render () {

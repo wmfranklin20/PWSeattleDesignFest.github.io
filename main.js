@@ -15,6 +15,31 @@ function updateWindowSize () {
 updateWindowSize();
 window.addEventListener('resize', updateWindowSize);
 
+let state = 0;
+function updateState() {
+    console.log(state);
+    let footerText = document.getElementById('footer-text');
+    if (state == 0) {
+        footerText.textContent = 'Description text goes down here. Ideally its only a few sentences long and doesnt take up too much space. You are in state 0'
+    } else if (state == 1) {
+        footerText.textContent = 'You are in state 1'
+    }
+    else {
+        footerText.textContent = 'Error, you are in state ${state}, which exceeds the scope of the project.'
+    };
+}
+
+document.getElementById('back').addEventListener('click', function() {
+    state -= 1;
+    updateState();
+});
+document.getElementById('next').addEventListener('click', function() {
+    state += 1;
+    updateState();
+});
+updateState();
+
+
 function mainViewer() {
 
     let scene = new THREE.Scene();

@@ -92,7 +92,8 @@ function mainViewer() {
     backdirectionalLight.position.set(50, -50, 75);
     scene.add(backdirectionalLight);
 
-    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000,2000), new THREE.MeshPhongMaterial ({color:'white'}));
+    const baseColor = new THREE.Color ( "rgb(65, 67, 68)" );
+    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 25,25), new THREE.MeshPhongMaterial ({color:baseColor}));
     scene.add(baseMesh);
     baseMesh.receiveShadow = true;
 

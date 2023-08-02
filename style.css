@@ -11,7 +11,11 @@ body {
 }
 button {
     font-family: 'Poppins', sans-serif;
-    background: rgb(45, 47, 46);
+    background: linear-gradient(
+        180deg,
+        rgb(36, 37, 36) 10%,
+        rgb(46, 47, 46)
+    );
     color: rgb(245, 231, 213);
     border: 0px;
     border-radius: 15px;
@@ -24,7 +28,7 @@ button {
     animation-timing-function: ease;
 }
 .float {
-    box-shadow: 3px 3px 2px rgba(35,35,35,.15);
+    box-shadow: 2px -2px 0px rgba(45, 47, 46, .35);
 }
 
 .text-large {
@@ -40,13 +44,21 @@ button {
     font-weight: 300;
 }
 #main-wrapper {
-    background: rgb(250,250,250);
+    background: linear-gradient(
+        180deg,
+        rgb(255, 255, 255) 70%,
+        rgb(245, 231, 213)
+    );
     /*background: url('././public/topo-background.png');*/
     background-size: contain;
 }
 #header {
     height: 50px;
-    background-color: rgb(46, 47, 46);
+    background: linear-gradient(
+        135deg,
+        rgb(46, 47, 46) 70%,
+        rgb(26, 27, 26)
+    );
     color: rgb(245, 231, 213);
     border-radius: 0px 0px 10px 10px;
     padding: 10px;
@@ -54,7 +66,7 @@ button {
     animation-name: fadeIn;
     animation-duration: 2.5s;
     animation-timing-function: ease;
-    box-shadow: 0px 3px 3px rgba(35,35,35,.25);
+    box-shadow: 0px 3px 0px rgba(45, 47, 46, .35);
 }
 @keyframes fadeIn {
     0% {opacity: 0;}
@@ -85,7 +97,11 @@ button {
 }
 #footer {
     height: 100px;
-    background-color: rgb(46, 47, 46);
+    background: linear-gradient(
+        135deg,
+        rgb(26, 27, 26) 10%,
+        rgb(46, 47, 46)
+    );
     color: rgb(245, 231, 213);
     font-size: 10px;
     text-align: center;
@@ -93,7 +109,7 @@ button {
     animation-name: fadeIn;
     animation-duration: 2.5s;
     animation-timing-function: ease;
-    box-shadow: 0px -3px 3px rgba(35,35,35,.25);
+    box-shadow: 0px -3px 0px rgba(45, 47, 46, .35);
 }
 #footer-text {
     padding: 15px 10px 10px 10px;

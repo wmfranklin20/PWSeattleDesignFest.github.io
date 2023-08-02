@@ -25,16 +25,20 @@ function updateState() {
         footerText.textContent = 'You are in state 1'
     }
     else {
-        footerText.textContent = 'Error, you are in state ${state}, which exceeds the scope of the project.'
+        footerText.textContent = `Error, you are in state ${state}, which exceeds the scope of the project.`;
     };
 };
 
 document.getElementById('back').addEventListener('click', function() {
-    state -= 1;
+    if (state > 0) {
+        state -= 1;
+    };
     updateState();
 });
 document.getElementById('next').addEventListener('click', function() {
-    state += 1;
+    if (state < 6) {
+        state += 1;
+    };
     updateState();
 });
 updateState();

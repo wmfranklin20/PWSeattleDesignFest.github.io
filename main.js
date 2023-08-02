@@ -27,7 +27,7 @@ function updateState() {
     else {
         footerText.textContent = 'Error, you are in state ${state}, which exceeds the scope of the project.'
     };
-}
+};
 
 document.getElementById('back').addEventListener('click', function() {
     state -= 1;

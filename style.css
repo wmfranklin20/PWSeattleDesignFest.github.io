@@ -40,7 +40,7 @@ button {
     font-weight: 300;
 }
 #main-wrapper {
-    background: rgb(242, 242, 242);
+    background: rgb(250,250,250);
     /*background: url('././public/topo-background.png');*/
     background-size: contain;
 }

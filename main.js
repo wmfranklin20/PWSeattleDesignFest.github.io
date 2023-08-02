@@ -55,12 +55,13 @@ function mainViewer() {
         0.1,
         10000
     );
-    camera.position.set (30,30,35);
+    camera.position.set (30,30,10);
     camera.up = new THREE.Vector3 (0,0,1);
     camera.lookAt (0,0,10);
 
     /*Controls import*/
-    let controls = new OrbitControls ( camera, renderer.domElement);
+    /*let controls = new OrbitControls ( camera, renderer.domElement);
+    controls.target = new THREE.Vector3(0,0,15);*/
 
     /*Lighting setup*/
     /*Ambient Light for basic scene lighting*/
@@ -164,25 +165,32 @@ function mainViewer() {
         camera.updateProjectionMatrix();
         renderer.setSize(wrapperWidth, wrapperHeight);
     }
+    let footerText = document.getElementById('footer-text');
+    footerText.textContent = 'Hello! Welcome to our interactive webpage for the 2023 Seattle Design Festival!'
     function updateState() {
         /*console.log(state);*/
-        let footerText = document.getElementById('footer-text');
         if (state == 0) {
-            footerText.textContent = 'Description text goes down here. Ideally its only a few sentences long and doesnt take up too much space. You are in state 0'
+            footerText.textContent = `Hello! Welcome to our interactive webpage for the 2023 Seattle Design Festival!`
+            camera.position.set (30,30,10);
+            camera.lookAt (0,0,10);
         } else if (state == 1) {
-            footerText.textContent = 'You are in state 1'
+            footerText.textContent = `${state}. Focus on heat map and color meaning.`
+            camera.position.set (30,30,45);
+            camera.lookAt (0,0,10);
         } else if (state == 2) {
-            footerText.textContent = 'You are in state 2'
+            footerText.textContent = `${state}. Curves as a function of height maps.`
+            camera.position.set (40,40,25);
+            camera.lookAt (0,0,15);
         } else if (state == 3) {
-            footerText.textContent = 'You are in state 3'
+            footerText.textContent = `${state}. Extrude fabric from curves.`
         } else if (state == 4) {
-            footerText.textContent = 'You are in state 4'
+            footerText.textContent = `${state}. Scaffolding falls in around display.`
         } else if (state == 5) {
-            footerText.textContent = 'You are in state 5'
+            footerText.textContent = `${state}. Fabric attached to scaffolding.`
         } else if (state == 6) {
-            footerText.textContent = 'You are in state 6'
+            footerText.textContent = `${state}. Final model and features, ideally model explodes verically.`
         } else {
-            footerText.textContent = `Error, you are in state ${state}, which exceeds the scope of the project.`;
+            footerText.textContent = `Whoops, not sure how you got here but try clicking 'Back' or 'Next' to return to a slide!`;
         };
     };
     function backButton () {

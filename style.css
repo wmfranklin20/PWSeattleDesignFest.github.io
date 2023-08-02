@@ -82,7 +82,7 @@ button {
     grid-column: 2 / 3;
 }
 #footer {
-    height: 80px;
+    height: 100px;
     background-color: rgb(230,80,55);
     font-size: 10px;
     color: rgb(242,242,242);

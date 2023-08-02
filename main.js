@@ -6,10 +6,19 @@ import { Rhino3dmLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loa
 
 function updateWindowSize () {
     const width = window.innerWidth;
-    const mainViewer = document.getElementById('model-viewer');
-    mainViewer.style.width = (width - 20) + 'px';
     const height = window.innerHeight;
-    mainViewer.style.height = (height - 65 - 165) + 'px';
+    const mainViewer = document.getElementById(`model-viewer`);
+    const header = document.getElementById(`header`).offsetHeight;
+    console.log(header);
+    const buttons = document.getElementById(`buttons`).offsetHeight;
+    console.log(buttons);
+    const footer = document.getElementById(`buttons`).offsetHeight;
+    console.log(footer);
+    mainViewer.style.width = (width - 20) + 'px';
+    console.log(mainViewer.style.height);
+    console.log(height - header - buttons - footer);
+    mainViewer.style.height = (height - header - buttons - footer - 75) + 'px';
+    console.log(mainViewer.style.height);
     console.log(`Window size: ${width} x ${height}`);
 }
 updateWindowSize();
@@ -123,9 +132,8 @@ function mainViewer() {
         object.traverse( function (child) {
             child.castShadow = true;
             child.receiveShadow = true;
-            console.log(child.type);
-            console.log(child.userData.attributes);
-            /*child.material = baseMat;*/
+            /*console.log(child.type);
+            console.log(child.userData.attributes);*/
         });
         scene.add(object);
         /*function animate () {

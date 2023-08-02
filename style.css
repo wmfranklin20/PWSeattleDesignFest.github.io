@@ -3,6 +3,7 @@
 html {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
+    background-color: rgb(230,80,55);
 }
 body {
     margin: auto;

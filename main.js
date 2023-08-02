@@ -3,6 +3,7 @@ import { OrbitControls } from 'https://unpkg.com/three@0.154.0/examples/jsm/cont
 import { GLTFLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/GLTFLoader.js';
 import { Rhino3dmLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/3DMLoader.js';
 
+let state = 0;
 
 function updateWindowSize () {
     const width = window.innerWidth;
@@ -23,34 +24,6 @@ function updateWindowSize () {
 }
 updateWindowSize();
 window.addEventListener('resize', updateWindowSize);
-
-let state = 0;
-function updateState() {
-    console.log(state);
-    let footerText = document.getElementById('footer-text');
-    if (state == 0) {
-        footerText.textContent = 'Description text goes down here. Ideally its only a few sentences long and doesnt take up too much space. You are in state 0'
-    } else if (state == 1) {
-        footerText.textContent = 'You are in state 1'
-    }
-    else {
-        footerText.textContent = `Error, you are in state ${state}, which exceeds the scope of the project.`;
-    };
-};
-
-document.getElementById('back').addEventListener('click', function() {
-    if (state > 0) {
-        state -= 1;
-    };
-    updateState();
-});
-document.getElementById('next').addEventListener('click', function() {
-    if (state < 6) {
-        state += 1;
-    };
-    updateState();
-});
-updateState();
 
 
 function mainViewer() {
@@ -118,9 +91,9 @@ function mainViewer() {
     backdirectionalLight.position.set(50, -50, 75);
     scene.add(backdirectionalLight);
 
-    /*const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 200,200), new THREE.MeshPhongMaterial ({color:'white'}));
+    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000,2000), new THREE.MeshPhongMaterial ({color:'white'}));
     scene.add(baseMesh);
-    baseMesh.receiveShadow = true;*/
+    baseMesh.receiveShadow = true;
 
     /*const baseMat = new THREE.MeshPhongMaterial( {color: 'white'} );*/
 
@@ -132,23 +105,8 @@ function mainViewer() {
         object.traverse( function (child) {
             child.castShadow = true;
             child.receiveShadow = true;
-            /*console.log(child.type);
-            console.log(child.userData.attributes);*/
         });
         scene.add(object);
-        /*function animate () {
-            let move = 0
-            const incrementStep = 0.1;
-            if (move < 5) {
-                move += incrementStep;
-            } else {
-                move = 0;
-            }
-            object.translateZ(move);
-            renderer.render (scene, camera);
-            requestAnimationFrame ( animate );
-        };
-        animate();*/
     });
 
     loader.load ('public/Scaffolding.3dm', function (object) {
@@ -167,13 +125,26 @@ function mainViewer() {
         scene.add(object);
     });
 
-    loader.load ('public/Curtains.3dm', function (object) {
-        object.traverse( function (child) {
-            child.castShadow = true;
-            child.receiveShadow = true;
+    function loadModel(state) {
+        const childVisibility = {};
+        loader.load ('public/Curtains.3dm', function (object) {
+            console.log(state);
+            if (Number(state) === 5) {
+                object.visible = false;
+                console.log(object.visible);
+            } else {
+                object.visible = true;
+                console.log(object.visible);
+            }
+            object.traverse((child) => {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            });
+
+            scene.add(object);
         });
-        scene.add(object);
-    });
+    };
+    loadModel(state);
 
     function render () {
         camera.updateMatrixWorld();
@@ -193,5 +164,47 @@ function mainViewer() {
         camera.updateProjectionMatrix();
         renderer.setSize(wrapperWidth, wrapperHeight);
     }
+    function updateState() {
+        /*console.log(state);*/
+        let footerText = document.getElementById('footer-text');
+        if (state == 0) {
+            footerText.textContent = 'Description text goes down here. Ideally its only a few sentences long and doesnt take up too much space. You are in state 0'
+        } else if (state == 1) {
+            footerText.textContent = 'You are in state 1'
+        } else if (state == 2) {
+            footerText.textContent = 'You are in state 2'
+        } else if (state == 3) {
+            footerText.textContent = 'You are in state 3'
+        } else if (state == 4) {
+            footerText.textContent = 'You are in state 4'
+        } else if (state == 5) {
+            footerText.textContent = 'You are in state 5'
+        } else if (state == 6) {
+            footerText.textContent = 'You are in state 6'
+        } else {
+            footerText.textContent = `Error, you are in state ${state}, which exceeds the scope of the project.`;
+        };
+    };
+    function backButton () {
+        document.getElementById('back').addEventListener('click', function() {
+            if (state > 0) {
+                state -= 1;
+            };
+            updateState();
+            loadModel(state);
+        });
+    };
+    backButton();
+    function nextButton () {
+        document.getElementById('next').addEventListener('click', function() {
+            if (state < 6) {
+                state += 1;
+            };
+            updateState();
+            loadModel(state);
+        });
+    };
+    nextButton();
 };
 mainViewer();
+

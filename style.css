@@ -38,14 +38,14 @@ button {
     font-weight: 600;
 }
 .text-medium {
-    font-size: 13px;
-    line-height: 16px;
+    font-size: 12px;
+    line-height: 14px;
     font-weight: 300;
 }
 .text-small {
-    font-size: 13px;
-    line-height: 16px;
-    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 400;
 }
 #main-wrapper {
     background: rgba(255,250,252,1);
@@ -53,7 +53,7 @@ button {
     background-size: contain;
 }
 #header {
-    height: 250px;
+    height: 200px;
     /*background: linear-gradient(
         135deg,
         rgb(221, 72, 50) 50%,
@@ -61,7 +61,7 @@ button {
     );*/
     background: url('public/waves-header.svg');
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
     background-size: 600px;
     color: rgb(245, 231, 213);
     /*border-radius: 0px 0px 10px 10px;*/
@@ -75,14 +75,15 @@ button {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
+#header-title {
+    padding: 10px 0px 10px 0px;
+}
 #header-text {
-    height: auto;
-    padding: 10px;
+    padding: 0px 2px 0px 2px;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height: 100%;
 }
 #model-viewer {
     height: 650px;

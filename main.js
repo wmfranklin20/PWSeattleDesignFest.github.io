@@ -55,13 +55,13 @@ function mainViewer() {
         0.1,
         10000
     );
-    camera.position.set (30,30,10);
+    camera.position.set (30,30,30);
     camera.up = new THREE.Vector3 (0,0,1);
     camera.lookAt (0,0,10);
 
     /*Controls import*/
-    /*let controls = new OrbitControls ( camera, renderer.domElement);
-    controls.target = new THREE.Vector3(0,0,15);*/
+    let controls = new OrbitControls ( camera, renderer.domElement);
+    controls.target = new THREE.Vector3(0,0,0);
 
     /*Lighting setup*/
     /*Ambient Light for basic scene lighting*/
@@ -167,31 +167,55 @@ function mainViewer() {
         renderer.setSize(wrapperWidth, wrapperHeight);
     }
     let footerText = document.getElementById('footer-text');
+    let headerTitleText = document.getElementById('header-title');
+    let headerDescText = document.getElementById('header-desc-text');
     footerText.textContent = 'Hello! Welcome to our interactive webpage for the 2023 Seattle Design Festival!'
     function updateState() {
         /*console.log(state);*/
         if (state == 0) {
             footerText.textContent = `Hello! Welcome to our interactive webpage for the 2023 Seattle Design Festival!`
+            headerTitleText.textContent = `Perkins&Will x GLY`;
+            headerDescText.textContent = `2023 Seattle Design Festival`;
             camera.position.set (30,30,10);
             camera.lookAt (0,0,10);
+            controls.target = new THREE.Vector3(0,0,10);
         } else if (state == 1) {
-            footerText.textContent = `${state}. Focus on heat map and color meaning.`
-            camera.position.set (30,30,45);
+            footerText.textContent = `${state}. Focus on heat map and color meaning.`;
+            headerTitleText.textContent = `${state}. Urban Heat Map Density`;
+            headerDescText.textContent = `Mapping urban heat map affect around the city.`;
+            camera.position.set (0,0,50);
             camera.lookAt (0,0,10);
+            controls.target = new THREE.Vector3(0,0,10);
         } else if (state == 2) {
             footerText.textContent = `${state}. Curves as a function of height maps.`
-            camera.position.set (40,40,25);
+            camera.position.set (20,20,25);
             camera.lookAt (0,0,15);
+            controls.target = new THREE.Vector3(0,0,15);
         } else if (state == 3) {
             footerText.textContent = `${state}. Extrude fabric from curves.`
+            camera.position.set (40,40,25);
+            camera.lookAt (0,0,15);
+            controls.target = new THREE.Vector3(0,0,15);
         } else if (state == 4) {
             footerText.textContent = `${state}. Scaffolding falls in around display.`
+            camera.position.set (40,40,25);
+            camera.lookAt (0,0,15);
+            controls.target = new THREE.Vector3(0,0,15);
         } else if (state == 5) {
             footerText.textContent = `${state}. Fabric attached to scaffolding.`
+            camera.position.set (40,40,25);
+            camera.lookAt (0,0,15);
+            controls.target = new THREE.Vector3(0,0,15);
         } else if (state == 6) {
             footerText.textContent = `${state}. Final model and features, ideally model explodes verically.`
+            camera.position.set (40,40,25);
+            camera.lookAt (0,0,15);
+            controls.target = new THREE.Vector3(0,0,15);
         } else {
             footerText.textContent = `Whoops, not sure how you got here but try clicking 'Back' or 'Next' to return to a slide!`;
+            camera.position.set (30,30,10);
+            camera.lookAt (0,0,10);
+            controls.target = new THREE.Vector3(0,0,10);
         };
     };
     function backButton () {
@@ -214,6 +238,7 @@ function mainViewer() {
         });
     };
     nextButton();
+    updateState();
 };
 mainViewer();
 

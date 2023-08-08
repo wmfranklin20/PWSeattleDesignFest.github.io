@@ -188,7 +188,7 @@ function mainViewer() {
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
             loadedObjects.forEach((object, index) => {
-                if (index > 2) {
+                if (index > 1) {
                     object.visible = true;
                 } else {
                     object.visible = false;
@@ -264,11 +264,6 @@ function mainViewer() {
             camera.position.set (30,30,10);
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
-        } else if (state == 7) {
-            let landing = document.getElementById('landing-page');
-            let landingText = document.getElementById('landing-content');
-            landing.style.height = '100%';
-            landingText.style.opacity = '100%';
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;
@@ -290,7 +285,7 @@ function mainViewer() {
 
     function nextButton () {
         document.getElementById('next').addEventListener('click', function() {
-            if (state < 7) {
+            if (state < 6) {
                 state += 1;
             };
             updateState();
@@ -303,8 +298,10 @@ function mainViewer() {
     function enterButton () {
         document.getElementById('enter-button').addEventListener('click', function() {
             let landing = document.getElementById('landing-page');
+            landing.style.height = '0px';
+            landing.style.opacity = '0';
             let landingText = document.getElementById('landing-content');
-            landing.style.height = '0';
+            landingText.style.height = '0px';
             landingText.style.opacity = '0';
         });
     };

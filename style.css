@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@keyframes fadeIn {
+    0% {opacity: 0%; margin-right: 100px; margin-left:100px;}
+    50% {opacity: 50%;}
+    100% {opacity:100%; margin-right: 5px; margin-left: 5px;}
+}
+
+@keyframes fadeSmooth {
+    0% {opacity: 0%;}
+    75% {opacity: 0%;}
+    100% {opacity: 100%;}
+}
+
 html {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -19,7 +31,7 @@ button {
     background: linear-gradient(
         135deg,
         rgb(221, 72, 50) 50%,
-        rgb(242,99,68)
+        rgb(242, 99, 68)
     );
     color: rgb(245, 231, 213);
     border: 0px;
@@ -31,11 +43,7 @@ button {
     animation-name: fadeIn;
     animation-duration: 2.5s;
     animation-timing-function: ease;
-    text-shadow: 2px 2px 0px rgba(55,55,55,.25);
-}
-
-.float {
-    box-shadow: 2px -2px 0px rgba(45, 47, 46, .35);
+    box-shadow: 2px 2px 0px rgba(249, 204, 131, .95);
 }
 
 .text-large {
@@ -65,15 +73,7 @@ button {
     background-position: top;
     background-size: 600px;
     color: rgb(245, 231, 213);
-    padding: 0px;
     text-align: center;
-    animation-name: fadeIn;
-    animation-duration: 2.5s;
-    animation-timing-function: ease;
-}
-@keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
 }
 #header-title {
     padding: 10px 0px 10px 0px;
@@ -89,6 +89,9 @@ button {
     height: 650px;
     margin: 10px;
     max-width: 600px;
+    animation-name: fadeSmooth;
+    animation-duration: 2.5s;
+    animation-timing-function: ease;
 }
 #buttons {
     display: grid;
@@ -110,9 +113,6 @@ button {
     color: rgb(245, 231, 213);
     font-size: 10px;
     text-align: center;
-    animation-name: fadeIn;
-    animation-duration: 2.5s;
-    animation-timing-function: ease;
 }
 #footer-text {
     padding: 40px 1px 1px 1px;

@@ -18,7 +18,7 @@ function updateWindowSize () {
     mainViewer.style.width = (width - 20) + 'px';
     console.log(mainViewer.style.height);
     console.log(height - header - buttons - footer);
-    mainViewer.style.height = (height - header - buttons - footer - 30) + 'px';
+    mainViewer.style.height = (height - header - buttons - footer - 24) + 'px';
     console.log(mainViewer.style.height);
     console.log(`Window size: ${width} x ${height}`);
 }

@@ -3,9 +3,13 @@
 html {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,1);
     background: url('././public/topo-background.png');
-    background-size: contain;
+    background-size: cover;
+    background-position: top;
+    background-blend-mode: multiply;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 body {
     margin: auto;
@@ -51,9 +55,8 @@ button {
 }
 #main-wrapper {
     background: rgba(255,250,252,1);
-    background: url('././public/topo-background.png');
-    background-size: contain;
-    background-blend-mode: multiply;
+    max-width: 600px;
+    margin: auto;
 }
 #header {
     height: 200px;
@@ -85,6 +88,7 @@ button {
 #model-viewer {
     height: 650px;
     margin: 10px;
+    max-width: 600px;
 }
 #buttons {
     display: grid;

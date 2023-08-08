@@ -13,12 +13,12 @@ function updateWindowSize () {
     console.log(header);
     const buttons = document.getElementById(`buttons`).offsetHeight;
     console.log(buttons);
-    const footer = document.getElementById(`buttons`).offsetHeight;
+    const footer = document.getElementById(`footer`).offsetHeight;
     console.log(footer);
     mainViewer.style.width = (width - 20) + 'px';
     console.log(mainViewer.style.height);
     console.log(height - header - buttons - footer);
-    mainViewer.style.height = (height - header - buttons - footer - 25) + 'px';
+    mainViewer.style.height = (height - header - buttons - footer - 30) + 'px';
     console.log(mainViewer.style.height);
     console.log(`Window size: ${width} x ${height}`);
 }

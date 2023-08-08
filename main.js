@@ -18,7 +18,7 @@ function updateWindowSize () {
     mainViewer.style.width = (width - 20) + 'px';
     console.log(mainViewer.style.height);
     console.log(height - header - buttons - footer);
-    mainViewer.style.height = (height - header - buttons - footer - 24) + 'px';
+    mainViewer.style.height = (height - header - buttons - footer - 20) + 'px';
     console.log(mainViewer.style.height);
     console.log(`Window size: ${width} x ${height}`);
 }
@@ -120,13 +120,23 @@ function mainViewer() {
         loadedObjects[0] = object;
     });
 
+    loader.load ('public/Curves.3dm', function (object) {
+        object.traverse( function (child) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+        });
+        scene.add(object);
+        object.visible = false;
+        loadedObjects[1] = object;
+    });
+
     loader.load ('public/Curtains.3dm', function (object) {
         object.traverse( function (child) {
             child.castShadow = true;
             child.receiveShadow = true;
         });
         scene.add(object);
-        loadedObjects[1] = object;
+        loadedObjects[2] = object;
     });
     
     loader.load ('public/Scaffolding.3dm', function (object) {
@@ -135,7 +145,7 @@ function mainViewer() {
             child.receiveShadow = true;
         });
         scene.add(object);
-        loadedObjects[2] = object;
+        loadedObjects[3] = object;
     });
 
     loader.load ('public/Frame-Fabric.3dm', function (object) {
@@ -144,7 +154,7 @@ function mainViewer() {
             child.receiveShadow = true;
         });
         scene.add(object);
-        loadedObjects[3] = object;
+        loadedObjects[4] = object;
     });
 
     function render () {
@@ -178,7 +188,7 @@ function mainViewer() {
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
             loadedObjects.forEach((object, index) => {
-                if (index != 0) {
+                if (index > 2) {
                     object.visible = true;
                 } else {
                     object.visible = false;
@@ -229,7 +239,7 @@ function mainViewer() {
             camera.lookAt (0,0,15);
             controls.target = new THREE.Vector3(0,0,15);
             loadedObjects.forEach((object, index) => {
-                if (index > 0) {
+                if (index > 1 && index < 4) {
                     object.visible = true;
                 } else {
                     object.visible = false;
@@ -241,12 +251,24 @@ function mainViewer() {
             camera.position.set (40,40,25);
             camera.lookAt (0,0,15);
             controls.target = new THREE.Vector3(0,0,15);
+            loadedObjects.forEach((object, index) => {
+                if (index > 1) {
+                    object.visible = true;
+                } else {
+                    object.visible = false;
+                }
+            });
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
             headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF it will be donated towards for use in the fabrication of clothing & accesories. The scaffolding and scrim will be re-used in future construction sites.`;
-            camera.position.set (40,40,25);
-            camera.lookAt (0,0,15);
-            controls.target = new THREE.Vector3(0,0,15);
+            camera.position.set (30,30,10);
+            camera.lookAt (0,0,10);
+            controls.target = new THREE.Vector3(0,0,10);
+        } else if (state == 7) {
+            let landing = document.getElementById('landing-page');
+            let landingText = document.getElementById('landing-content');
+            landing.style.height = '100%';
+            landingText.style.opacity = '100%';
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;
@@ -268,7 +290,7 @@ function mainViewer() {
 
     function nextButton () {
         document.getElementById('next').addEventListener('click', function() {
-            if (state < 6) {
+            if (state < 7) {
                 state += 1;
             };
             updateState();
@@ -277,6 +299,16 @@ function mainViewer() {
     nextButton();
 
     updateState();
+
+    function enterButton () {
+        document.getElementById('enter-button').addEventListener('click', function() {
+            let landing = document.getElementById('landing-page');
+            let landingText = document.getElementById('landing-content');
+            landing.style.height = '0';
+            landingText.style.opacity = '0';
+        });
+    };
+    enterButton();
 };
 
 mainViewer();

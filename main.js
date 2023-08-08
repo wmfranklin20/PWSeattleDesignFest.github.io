@@ -243,7 +243,7 @@ function mainViewer() {
             controls.target = new THREE.Vector3(0,0,15);
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
-            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
+            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF it will be donated towards for use in the fabrication of clothing & accesories. The scaffolding and scrim will be re-used in future construction sites.`;
             camera.position.set (40,40,25);
             camera.lookAt (0,0,15);
             controls.target = new THREE.Vector3(0,0,15);

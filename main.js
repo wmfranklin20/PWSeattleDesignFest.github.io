@@ -18,7 +18,7 @@ function updateWindowSize () {
     mainViewer.style.width = (width - 20) + 'px';
     console.log(mainViewer.style.height);
     console.log(height - header - buttons - footer);
-    mainViewer.style.height = (height - header - buttons - footer - 75) + 'px';
+    mainViewer.style.height = (height - header - buttons - footer - 25) + 'px';
     console.log(mainViewer.style.height);
     console.log(`Window size: ${width} x ${height}`);
 }
@@ -90,6 +90,11 @@ function mainViewer() {
     /*Backlight*/
     const backdirectionalLight = new THREE.DirectionalLight(0xffffff, 1.25);
     backdirectionalLight.position.set(50, -50, 75);
+    backdirectionalLight.castShadow = true;
+    backdirectionalLight.shadow.mapSize.width = 1024 * 5;
+    backdirectionalLight.shadow.mapSize.height = 1024 * 5;
+    backdirectionalLight.decay = 2;
+    backdirectionalLight.distance = 10000;
     scene.add(backdirectionalLight);
 
     const baseColor = new THREE.Color ( "rgb(65, 67, 68)" );
@@ -103,20 +108,34 @@ function mainViewer() {
     const loader = new Rhino3dmLoader();
     loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.15.0/');
   
+    let loadedObjects = [];
+
     loader.load ('public/Heat-Surfaces.3dm', function (object) {
         object.traverse( function (child) {
             child.castShadow = true;
             child.receiveShadow = true;
         });
         scene.add(object);
+        object.visible = false;
+        loadedObjects[0] = object;
     });
 
+    loader.load ('public/Curtains.3dm', function (object) {
+        object.traverse( function (child) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+        });
+        scene.add(object);
+        loadedObjects[1] = object;
+    });
+    
     loader.load ('public/Scaffolding.3dm', function (object) {
         object.traverse( function (child) {
             child.castShadow = true;
             child.receiveShadow = true;
         });
         scene.add(object);
+        loadedObjects[2] = object;
     });
 
     loader.load ('public/Frame-Fabric.3dm', function (object) {
@@ -125,28 +144,8 @@ function mainViewer() {
             child.receiveShadow = true;
         });
         scene.add(object);
+        loadedObjects[3] = object;
     });
-
-    function loadModel(state) {
-        const childVisibility = {};
-        loader.load ('public/Curtains.3dm', function (object) {
-            console.log(state);
-            if (Number(state) === 5) {
-                object.visible = false;
-                console.log(object.visible);
-            } else {
-                object.visible = true;
-                console.log(object.visible);
-            }
-            object.traverse((child) => {
-                child.castShadow = true;
-                child.receiveShadow = true;
-            });
-
-            scene.add(object);
-        });
-    };
-    loadModel(state);
 
     function render () {
         camera.updateMatrixWorld();
@@ -165,80 +164,120 @@ function mainViewer() {
         camera.aspect = wrapperWidth / wrapperHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(wrapperWidth, wrapperHeight);
-    }
-    let footerText = document.getElementById('footer-text');
+    };
+
     let headerTitleText = document.getElementById('header-title');
     let headerDescText = document.getElementById('header-desc-text');
-    footerText.textContent = 'Hello! Welcome to our interactive webpage for the 2023 Seattle Design Festival!'
+
     function updateState() {
         /*console.log(state);*/
         if (state == 0) {
-            footerText.textContent = `Hello! Welcome to our interactive webpage for the 2023 Seattle Design Festival!`
-            headerTitleText.textContent = `Perkins&Will x GLY`;
-            headerDescText.textContent = `2023 Seattle Design Festival`;
+            headerTitleText.textContent = `UNFOLD`;
+            headerDescText.textContent = `Welcome to our interactive webpage for the 2023 SDF Block Party! Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development and reduction of green spaces, and the the urban heat island effect in Seattle.`;
             camera.position.set (30,30,10);
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
+            loadedObjects.forEach((object, index) => {
+                if (index != 0) {
+                    object.visible = true;
+                } else {
+                    object.visible = false;
+                }
+            });
         } else if (state == 1) {
-            footerText.textContent = `${state}. Focus on heat map and color meaning.`;
             headerTitleText.textContent = `${state}. Urban Heat Map Density`;
-            headerDescText.textContent = `Mapping urban heat map affect around the city.`;
-            camera.position.set (0,0,50);
+            headerDescText.textContent = `The map shows the urban heat island effect in King County. A growing density of heat-absorbing surfaces and consequently a reduction of vegetated space produve an urban heat island effect that is boosting temperatures. The heat islands are color coded according to their intensity with red representating the greateset intensity.`;
+            camera.position.set (10,10,40);
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
+            loadedObjects.forEach((object, index) => {
+                if (index === 0) {
+                    object.visible = true;
+                } else {
+                    object.visible = false;
+                }
+            });
         } else if (state == 2) {
-            footerText.textContent = `${state}. Curves as a function of height maps.`
+            headerTitleText.textContent = `${state}. Map Translation`;
+            headerDescText.textContent = `Loose curves were generated by the data provided by map.  The curves were defined as the boundaries of the various heat intensity regions. `;
             camera.position.set (20,20,25);
             camera.lookAt (0,0,15);
-            controls.target = new THREE.Vector3(0,0,15);
+            loadedObjects.forEach((object, index) => {
+                if (index === 0 || index === 1) {
+                    object.visible = true;
+                } else {
+                    object.visible = false;
+                }
+            });
         } else if (state == 3) {
-            footerText.textContent = `${state}. Extrude fabric from curves.`
+            headerTitleText.textContent = `${state}. Fabric Extrusion`;
+            headerDescText.textContent = `A coral woven linen fabric extrudes out from the curves at differnt lengths. The different fabric lengths represent the heat island intensity derived from the map. The extrapolation of the urban heat island effect results in an immersive experience, where color and translucency make for a dynamic space.`;
+            controls.target = new THREE.Vector3(0,0,15);
             camera.position.set (40,40,25);
             camera.lookAt (0,0,15);
-            controls.target = new THREE.Vector3(0,0,15);
+            loadedObjects.forEach((object, index) => {
+                if (index === 1 || index === 2) {
+                    object.visible = true;
+                } else {
+                    object.visible = false;
+                }
+            });
         } else if (state == 4) {
-            footerText.textContent = `${state}. Scaffolding falls in around display.`
+            headerTitleText.textContent = `${state}. Canopy Scaffolding`;
+            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
             camera.position.set (40,40,25);
             camera.lookAt (0,0,15);
             controls.target = new THREE.Vector3(0,0,15);
+            loadedObjects.forEach((object, index) => {
+                if (index > 0) {
+                    object.visible = true;
+                } else {
+                    object.visible = false;
+                }
+            });
         } else if (state == 5) {
-            footerText.textContent = `${state}. Fabric attached to scaffolding.`
+            headerTitleText.textContent = `${state}. Canopy Fabric`;
+            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
             camera.position.set (40,40,25);
             camera.lookAt (0,0,15);
             controls.target = new THREE.Vector3(0,0,15);
         } else if (state == 6) {
-            footerText.textContent = `${state}. Final model and features, ideally model explodes verically.`
+            headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
+            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
             camera.position.set (40,40,25);
             camera.lookAt (0,0,15);
             controls.target = new THREE.Vector3(0,0,15);
         } else {
-            footerText.textContent = `Whoops, not sure how you got here but try clicking 'Back' or 'Next' to return to a slide!`;
+            headerTitleText.textContent = `Whoops!`;
+            headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;
             camera.position.set (30,30,10);
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
         };
     };
+
     function backButton () {
         document.getElementById('back').addEventListener('click', function() {
             if (state > 0) {
                 state -= 1;
             };
             updateState();
-            loadModel(state);
         });
     };
     backButton();
+
     function nextButton () {
         document.getElementById('next').addEventListener('click', function() {
             if (state < 6) {
                 state += 1;
             };
             updateState();
-            loadModel(state);
         });
     };
     nextButton();
+
     updateState();
 };
+
 mainViewer();
 

@@ -4,6 +4,8 @@ html {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     background-color: rgb(255,255,255);
+    background: url('././public/topo-background.png');
+    background-size: contain;
 }
 body {
     margin: auto;
@@ -49,22 +51,17 @@ button {
 }
 #main-wrapper {
     background: rgba(255,250,252,1);
-    /*background: url('././public/topo-background.png');*/
+    background: url('././public/topo-background.png');
     background-size: contain;
+    background-blend-mode: multiply;
 }
 #header {
     height: 200px;
-    /*background: linear-gradient(
-        135deg,
-        rgb(221, 72, 50) 50%,
-        rgb(242,99,68)
-    );*/
     background: url('public/waves-header.svg');
     background-repeat: no-repeat;
     background-position: top;
     background-size: 600px;
     color: rgb(245, 231, 213);
-    /*border-radius: 0px 0px 10px 10px;*/
     padding: 0px;
     text-align: center;
     animation-name: fadeIn;
@@ -102,11 +99,6 @@ button {
 }
 #footer {
     height: 75px;
-    /*background: linear-gradient(
-        45deg,
-        rgb(221, 72, 50) 50%,
-        rgb(242,99,68)
-    );*/
     background: url('public/waves-footer.svg');
     background-repeat: no-repeat;
     background-position: bottom;
@@ -114,7 +106,6 @@ button {
     color: rgb(245, 231, 213);
     font-size: 10px;
     text-align: center;
-    border-radius: 10px 10px 0px 0px;
     animation-name: fadeIn;
     animation-duration: 2.5s;
     animation-timing-function: ease;

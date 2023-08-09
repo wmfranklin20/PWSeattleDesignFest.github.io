@@ -54,7 +54,7 @@ button {
     background-color: rgb(221, 72, 50);
     background: url('public/waves-landing.svg');
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: center;
     background-size: 600px;
     z-index: 1;
     transition: 

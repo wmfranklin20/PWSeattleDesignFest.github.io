@@ -110,6 +110,7 @@ button {
     background-size: 600px;
     color: rgb(245, 231, 213);
     text-align: center;
+    transition: opacity 2.5s ease-in-out;
 }
 #header-title {
     padding: 15px 0px 10px 0px;

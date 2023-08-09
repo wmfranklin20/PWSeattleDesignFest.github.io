@@ -215,7 +215,7 @@ function mainViewer() {
         if (state == 0) {
             headerTitleText.textContent = `"UNFOLD"`;
             headerDescText.textContent = `Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development, the reduction of green spaces, and the urban heat island effect in Seattle.`;         
-            animateCamera(new THREE.Vector3(30,30,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
+            animateCamera(new THREE.Vector3(25,25,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
                     object.visible = true;
@@ -285,7 +285,7 @@ function mainViewer() {
         } else if (state == 7) {
             headerTitleText.textContent = `Thanks for Joining!`;
             headerDescText.textContent = `Thank you for taking the time to explore our entry to the 2023 SDF Block Party! If you would like more information about the project please use the link below!`;
-            animateCamera(new THREE.Vector3(30,30,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
+            animateCamera(new THREE.Vector3(25,25,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;

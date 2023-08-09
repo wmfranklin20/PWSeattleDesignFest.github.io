@@ -247,7 +247,7 @@ function mainViewer() {
             });
         } else if (state == 3) {
             headerTitleText.textContent = `${state}. Fabric Extrusion`;
-            headerDescText.textContent = `A coral woven linen fabric extrudes out from the curves at differnt lengths. The different fabric lengths represent the heat island intensity derived from the map. The extrapolation of the urban heat island effect results in an immersive experience, where color and translucency make for a dynamic space.`;
+            headerDescText.textContent = `A coral woven linen fabric extrudes out from the curves at differnt lengths. These lengths represent the heat island intensity derived from the map resulting in an immersive experience, where color and translucency make for a dynamic space.`;
             animateCamera(new THREE.Vector3(15,15,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 1 || index === 2) {
@@ -258,7 +258,7 @@ function mainViewer() {
             });
         } else if (state == 4) {
             headerTitleText.textContent = `${state}. Canopy Scaffolding`;
-            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
+            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. This effect can be mitigated by simple strategies like increasing tree canopy, installing green or cool roofs and installing permeable surfaces.`;
             animateCamera(new THREE.Vector3(25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1 && index < 4) {
@@ -269,7 +269,7 @@ function mainViewer() {
             });
         } else if (state == 5) {
             headerTitleText.textContent = `${state}. Canopy Fabric`;
-            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
+            headerDescText.textContent = `The pavilion is shrouded in a skrim mesh to provide a more immersive experience for users and to protect the fabric within from the elements.`;
             animateCamera(new THREE.Vector3(-25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
@@ -280,10 +280,12 @@ function mainViewer() {
             });
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
-            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF it will be donated towards for use in the fabrication of clothing & accesories. The scaffolding and scrim will be re-used in future construction sites.`;
+            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF will be donated for use in the fabrication of clothing & accesories. The scaffolding & scrim will be re-used in future construction sites.`;
             animateCamera(new THREE.Vector3(-25,25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
         } else if (state == 7) {
-            exitButton();
+            headerTitleText.textContent = `Thanks for Joining!`;
+            headerDescText.textContent = `Thank you for taking the time to explore our entry to the 2023 SDF Block Party! If you would like more information about the project please use the link below!`;
+            animateCamera(new THREE.Vector3(30,30,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;

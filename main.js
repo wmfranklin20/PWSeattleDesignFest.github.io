@@ -2,6 +2,7 @@ import * as THREE from 'https://unpkg.com/three@0.154.0/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.154.0/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/GLTFLoader.js';
 import { Rhino3dmLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/3DMLoader.js';
+import { TWEEN } from 'https://unpkg.com/three@0.139.0/examples/jsm/libs/tween.module.min.js';
 
 let state = 0;
 
@@ -57,7 +58,7 @@ function mainViewer() {
     );
     camera.position.set (30,30,30);
     camera.up = new THREE.Vector3 (0,0,1);
-    camera.lookAt (0,0,10);
+    camera.lookAt (0,0,0);
 
     /*Controls import*/
     let controls = new OrbitControls ( camera, renderer.domElement);
@@ -97,7 +98,7 @@ function mainViewer() {
     backdirectionalLight.distance = 10000;
     scene.add(backdirectionalLight);
 
-    const baseColor = new THREE.Color ( "rgb(65, 67, 68)" );
+    const baseColor = new THREE.Color ( "rgb(200, 200, 200)" );
     const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 25,25), new THREE.MeshPhongMaterial ({color:baseColor}));
     scene.add(baseMesh);
     baseMesh.receiveShadow = true;
@@ -163,6 +164,7 @@ function mainViewer() {
     }
     function animate() {
         requestAnimationFrame( animate );
+        TWEEN.update();
         render();
     }
     animate();
@@ -176,17 +178,44 @@ function mainViewer() {
         renderer.setSize(wrapperWidth, wrapperHeight);
     };
 
+    function animateCamera(targetPosition, targetPoint, controlsTarget, duration) {
+        var currentPosition = camera.position.clone();
+
+        new TWEEN.Tween(currentPosition)
+            .to(targetPosition, duration)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onUpdate(function() {
+                camera.position.copy(currentPosition);
+                camera.lookAt(targetPoint);
+                controls.target = controlsTarget;
+            })
+            .start();
+    };
+
+    function animateObject(object, targetZ, duration) {
+        var currentPosition = object.position.clone();
+        var targetPosition = new THREE.Vector3(currentPosition.x, currentPosition.y, targetZ);
+
+        new TWEEN.Tween(currentPosition)
+            .to(targetPosition, duration)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onUpdate(function () {
+                object.position.copy(currentPosition);
+            })
+            .start();
+    };
+
+
+
     let headerTitleText = document.getElementById('header-title');
     let headerDescText = document.getElementById('header-desc-text');
 
     function updateState() {
         /*console.log(state);*/
         if (state == 0) {
-            headerTitleText.textContent = `UNFOLD`;
-            headerDescText.textContent = `Welcome to our interactive webpage for the 2023 SDF Block Party! Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development and reduction of green spaces, and the the urban heat island effect in Seattle.`;
-            camera.position.set (30,30,10);
-            camera.lookAt (0,0,10);
-            controls.target = new THREE.Vector3(0,0,10);
+            headerTitleText.textContent = `"UNFOLD"`;
+            headerDescText.textContent = `Welcome to our interactive webpage for the 2023 SDF Block Party! Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development and reduction of green spaces, and the the urban heat island effect in Seattle.`;         
+            animateCamera(new THREE.Vector3(30,30,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
                     object.visible = true;
@@ -197,9 +226,7 @@ function mainViewer() {
         } else if (state == 1) {
             headerTitleText.textContent = `${state}. Urban Heat Map Density`;
             headerDescText.textContent = `The map shows the urban heat island effect in King County. A growing density of heat-absorbing surfaces and consequently a reduction of vegetated space produve an urban heat island effect that is boosting temperatures. The heat islands are color coded according to their intensity with red representating the greateset intensity.`;
-            camera.position.set (10,10,40);
-            camera.lookAt (0,0,10);
-            controls.target = new THREE.Vector3(0,0,10);
+            animateCamera(new THREE.Vector3(10,10,35), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
                     object.visible = true;
@@ -210,10 +237,9 @@ function mainViewer() {
         } else if (state == 2) {
             headerTitleText.textContent = `${state}. Map Translation`;
             headerDescText.textContent = `Loose curves were generated by the data provided by map.  The curves were defined as the boundaries of the various heat intensity regions. `;
-            camera.position.set (20,20,25);
-            camera.lookAt (0,0,15);
+            animateCamera(new THREE.Vector3(20,20,25), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
-                if (index === 0 || index === 1) {
+                if (index === 1) {
                     object.visible = true;
                 } else {
                     object.visible = false;
@@ -222,9 +248,7 @@ function mainViewer() {
         } else if (state == 3) {
             headerTitleText.textContent = `${state}. Fabric Extrusion`;
             headerDescText.textContent = `A coral woven linen fabric extrudes out from the curves at differnt lengths. The different fabric lengths represent the heat island intensity derived from the map. The extrapolation of the urban heat island effect results in an immersive experience, where color and translucency make for a dynamic space.`;
-            controls.target = new THREE.Vector3(0,0,15);
-            camera.position.set (40,40,25);
-            camera.lookAt (0,0,15);
+            animateCamera(new THREE.Vector3(15,15,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 1 || index === 2) {
                     object.visible = true;
@@ -235,9 +259,7 @@ function mainViewer() {
         } else if (state == 4) {
             headerTitleText.textContent = `${state}. Canopy Scaffolding`;
             headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
-            camera.position.set (40,40,25);
-            camera.lookAt (0,0,15);
-            controls.target = new THREE.Vector3(0,0,15);
+            animateCamera(new THREE.Vector3(25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1 && index < 4) {
                     object.visible = true;
@@ -248,9 +270,7 @@ function mainViewer() {
         } else if (state == 5) {
             headerTitleText.textContent = `${state}. Canopy Fabric`;
             headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. The urban heat island effect can be mitigated by simple strategies like increasing tree canopy, the installataion of green or coll roofs and the installation of permeable surfaces.  For more inforamtion: `;
-            camera.position.set (40,40,25);
-            camera.lookAt (0,0,15);
-            controls.target = new THREE.Vector3(0,0,15);
+            animateCamera(new THREE.Vector3(-25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
                     object.visible = true;
@@ -261,13 +281,11 @@ function mainViewer() {
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
             headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF it will be donated towards for use in the fabrication of clothing & accesories. The scaffolding and scrim will be re-used in future construction sites.`;
-            camera.position.set (30,30,10);
-            camera.lookAt (0,0,10);
-            controls.target = new THREE.Vector3(0,0,10);
+            animateCamera(new THREE.Vector3(-25,25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;
-            camera.position.set (30,30,10);
+            camera.position.set (20,20,5);
             camera.lookAt (0,0,10);
             controls.target = new THREE.Vector3(0,0,10);
         };

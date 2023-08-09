@@ -282,6 +282,8 @@ function mainViewer() {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
             headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF it will be donated towards for use in the fabrication of clothing & accesories. The scaffolding and scrim will be re-used in future construction sites.`;
             animateCamera(new THREE.Vector3(-25,25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
+        } else if (state == 7) {
+            exitButton();
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;
@@ -303,7 +305,7 @@ function mainViewer() {
 
     function nextButton () {
         document.getElementById('next').addEventListener('click', function() {
-            if (state < 6) {
+            if (state < 7) {
                 state += 1;
             };
             updateState();
@@ -324,7 +326,7 @@ function mainViewer() {
         });
     };
     enterButton();
+    
 };
 
 mainViewer();
-

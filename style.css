@@ -55,7 +55,7 @@ button {
     background: url('public/waves-landing.svg');
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 600px;
+    background-size: 550px;
     z-index: 1;
     transition: 
         height 2s ease-in-out,
@@ -65,7 +65,7 @@ button {
 #landing-content{
     position: absolute;
     width: 100%;
-    top: 60%;
+    top: 50%;
     margin: auto;
     color: rgb(242,242,242);
     padding: 0% 0px 0px 0px;
@@ -76,23 +76,23 @@ button {
 }
 
 #landing-desc {
-    padding: 10px;
+    padding: 25px;
 }
 
 .text-large {
-    font-size: 28px;
-    line-height: 28px;
+    font-size: 26px;
+    line-height: 26px;
     font-weight: 600;
 }
 .text-medium {
     font-size: 12px;
-    line-height: 14px;
-    font-weight: 300;
+    line-height: 13px;
+    font-weight: 400;
 }
 .text-small {
     font-size: 12px;
-    line-height: 14px;
-    font-weight: 400;
+    line-height: 13px;
+    font-weight: 200;
 }
 #main-wrapper {
     background: rgba(255,250,252,1);
@@ -113,7 +113,7 @@ button {
     padding: 10px 0px 10px 0px;
 }
 #header-text {
-    padding: 0px 2px 0px 2px;
+    padding: 0px 10px 0px 10px;
     margin: auto;
     display: flex;
     flex-direction: column;

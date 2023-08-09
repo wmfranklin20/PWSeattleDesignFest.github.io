@@ -214,7 +214,7 @@ function mainViewer() {
         /*console.log(state);*/
         if (state == 0) {
             headerTitleText.textContent = `"UNFOLD"`;
-            headerDescText.textContent = `Welcome to our interactive webpage for the 2023 SDF Block Party! Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development and reduction of green spaces, and the the urban heat island effect in Seattle.`;         
+            headerDescText.textContent = `Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development, the reduction of green spaces, and the urban heat island effect in Seattle.`;         
             animateCamera(new THREE.Vector3(30,30,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
@@ -225,7 +225,7 @@ function mainViewer() {
             });
         } else if (state == 1) {
             headerTitleText.textContent = `${state}. Urban Heat Map Density`;
-            headerDescText.textContent = `The map shows the urban heat island effect in King County. A growing density of heat-absorbing surfaces and consequently a reduction of vegetated space produve an urban heat island effect that is boosting temperatures. The heat islands are color coded according to their intensity with red representating the greateset intensity.`;
+            headerDescText.textContent = `The map shows a growing density of heat-absorbing surfaces and a reduction of vegetated space creating an urban heat island effect that is boosting temperatures. The intensity of these heat islands are mapped, with red representating the greatest heat.`;
             animateCamera(new THREE.Vector3(10,10,35), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
@@ -280,7 +280,7 @@ function mainViewer() {
             });
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
-            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The coral linen is a surplus from a clothing brand, and after SDF will be donated for use in the fabrication of clothing & accesories. The scaffolding & scrim will be re-used in future construction sites.`;
+            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The linen is surplus from a clothing brand, and will be donated for use in the fabrication of clothing & accesories. The scaffolding & scrim will be re-used in future construction.`;
             animateCamera(new THREE.Vector3(-25,25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
         } else if (state == 7) {
             headerTitleText.textContent = `Thanks for Joining!`;

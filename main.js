@@ -74,28 +74,33 @@ function mainViewer() {
     const spotColor = new THREE.Color ( "rgb(255,255,255)" );
     const spotLight = new THREE.SpotLight ( spotColor );
     scene.add(spotLight);
-    spotLight.position.set (-50,50,75);
+
+    const spotLightHelper = new THREE.SpotLightHelper( spotLight );
+    scene.add(spotLightHelper);
+    
+    spotLight.position.set (0,0,75);
     spotLight.castShadow = true;
-    spotLight.intensity = 1;
-    spotLight.angle = 1;
-    spotLight.penumbra = Math.PI / 2;
-    spotLight.decay = 2;
-    spotLight.distance = 10000;
-    spotLight.shadow.camera.near = 500;
+    spotLight.intensity = .25;
+    spotLight.angle = Math.PI / 16;
+    spotLight.penumbra = 1;
+    spotLight.decay = 1;
+    spotLight.distance = 0;
+    spotLight.shadow.camera.near = 1;
     spotLight.shadow.camera.far = 4000;
     spotLight.shadow.camera.fov = 30;
-    spotLight.shadow.bias = -0.005;
-    spotLight.shadow.mapSize.width = 1024 * 5;
-    spotLight.shadow.mapSize.height = 1024 * 5;
+    spotLight.shadow.bias = 1;
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
 
     /*Backlight*/
-    const backdirectionalLight = new THREE.DirectionalLight(0xffffff, 1.25);
-    backdirectionalLight.position.set(50, -50, 75);
+    const backdirectionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    backdirectionalLight.position.set(50, 50, 75);
     backdirectionalLight.castShadow = true;
     backdirectionalLight.shadow.mapSize.width = 1024 * 5;
     backdirectionalLight.shadow.mapSize.height = 1024 * 5;
-    backdirectionalLight.decay = 2;
-    backdirectionalLight.distance = 10000;
+    backdirectionalLight.shadow.bias = -0.0005;
+    backdirectionalLight.decay = 10;
+    backdirectionalLight.distance = 0;
     scene.add(backdirectionalLight);
 
     const baseColor = new THREE.Color ( "rgb(200, 200, 200)" );
@@ -161,6 +166,7 @@ function mainViewer() {
     function render () {
         camera.updateMatrixWorld();
         renderer.render( scene, camera );
+        spotLightHelper.update();
     }
     function animate() {
         requestAnimationFrame( animate );

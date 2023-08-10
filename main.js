@@ -219,8 +219,13 @@ function mainViewer() {
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
                     object.visible = true;
-                } else {
+                    animateObject(object, 0, 1000*index);
+                } else if (index === 0) {
                     object.visible = false;
+                    animateObject(object, 50, 1500);
+                } else {
+                    object.visible = true;
+                    animateObject(object, 100, 1000);
                 }
             });
         } else if (state == 1) {
@@ -230,8 +235,10 @@ function mainViewer() {
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
                     object.visible = true;
+                    animateObject(object, 0, 1500);
                 } else {
-                    object.visible = false;
+                    /*object.visible = false;*/
+                    animateObject(object, 100, 1000*index);
                 }
             });
         } else if (state == 2) {
@@ -241,8 +248,12 @@ function mainViewer() {
             loadedObjects.forEach((object, index) => {
                 if (index === 1) {
                     object.visible = true;
+                    animateObject(object, 0, 1500*index);
+                } else if (index === 0) {
+                    object.visible = false;
                 } else {
                     object.visible = false;
+                    animateObject(object, 0, 1500*index);
                 }
             });
         } else if (state == 3) {
@@ -320,7 +331,7 @@ function mainViewer() {
     function enterButton () {
         document.getElementById('enter-button').addEventListener('click', function() {
             let landing = document.getElementById('landing-page');
-            landing.style.height = '0px';
+            landing.style.top = '-1000px';
             landing.style.opacity = '0';
             let landingText = document.getElementById('landing-content');
             landingText.style.height = '0px';

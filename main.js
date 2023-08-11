@@ -30,6 +30,7 @@ window.addEventListener('resize', updateWindowSize);
 function mainViewer() {
 
     let scene = new THREE.Scene();
+    scene.fog = new THREE.Fog (0xffffff, 10, 250);
 
     /*Locate and initialize wrapper*/
     let wrapper = document.getElementById('model-viewer');
@@ -119,7 +120,7 @@ function mainViewer() {
     scene.add(backdirectionalLight);
 
     const baseColor = new THREE.Color ( "rgb(222, 222, 222)" );
-    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 35, 35), new THREE.MeshPhongMaterial ({color:baseColor}));
+    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 3500, 3500), new THREE.MeshPhongMaterial ({color:baseColor}));
     scene.add(baseMesh);
     baseMesh.receiveShadow = true;
 
@@ -129,6 +130,13 @@ function mainViewer() {
     const loader = new Rhino3dmLoader();
     loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.15.0/');
   
+    /*loadedObjects Order = 
+        0. Heat-Map
+        1. Heat Curves
+        2. Heat Curtains
+        3. Scaffolding
+        4. Frame Fabric
+    */
     let loadedObjects = [];
 
     loader.load ('public/Heat-Surfaces.3dm', function (object) {
@@ -241,11 +249,8 @@ function mainViewer() {
                 if (index > 1) {
                     object.visible = true;
                     animateObject(object, 0, 1000*index);
-                } else if (index === 0) {
-                    object.visible = false;
-                    animateObject(object, 50, 1500);
                 } else {
-                    object.visible = true;
+                    object.visible = false;
                     animateObject(object, 100, 1000);
                 }
             });
@@ -289,7 +294,7 @@ function mainViewer() {
                 }
             });
         } else if (state == 4) {
-            headerTitleText.textContent = `${state}. Canopy Scaffolding`;
+            headerTitleText.textContent = `${state}. Frame Scaffolding`;
             headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. This effect can be mitigated by simple strategies like increasing tree canopy, installing green or cool roofs and installing permeable surfaces.`;
             animateCamera(new THREE.Vector3(25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
@@ -300,12 +305,13 @@ function mainViewer() {
                 }
             });
         } else if (state == 5) {
-            headerTitleText.textContent = `${state}. Canopy Fabric`;
+            headerTitleText.textContent = `${state}. Frame Fabric`;
             headerDescText.textContent = `The pavilion is shrouded in a skrim mesh to provide a more immersive experience for users and to protect the fabric within from the elements.`;
             animateCamera(new THREE.Vector3(-25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
                     object.visible = true;
+                    animateObject(object, 0, 1500*index);
                 } else {
                     object.visible = false;
                 }
@@ -313,7 +319,25 @@ function mainViewer() {
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
             headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The linen is surplus from a clothing brand, and will be donated for use in the fabrication of clothing & accesories. The scaffolding & scrim will be re-used in future construction.`;
-            animateCamera(new THREE.Vector3(-25,25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
+            animateCamera(new THREE.Vector3(-50, -50, 35), new THREE.Vector3(0,0,35), new THREE.Vector3(0,0,35), 3000);
+            loadedObjects.forEach((object, index) => {
+                if (index === 0) {
+                    object.visible = true;
+                    animateObject(object, 48, 1500*(5-index));
+                } else if (index === 1) {
+                    object.visible = true;
+                    animateObject(object, 45, 1500*(5-index));
+                } else if (index === 2) {
+                    object.visible = true;
+                    animateObject(object, 40, 1500*(5-index));
+                } else if (index === 3) {
+                    object.visible = true;
+                    animateObject(object, 22, 1500*(5-index));
+                } else if (index === 4) {
+                    object.visible = true;
+                    animateObject(object, 0, 1500*(5-index));
+                } 
+            });
         } else if (state == 7) {
             headerTitleText.textContent = `Thanks for Joining!`;
             headerDescText.textContent = `Thank you for taking the time to explore our entry to the 2023 SDF Block Party! If you would like more information about the project please use the link below!`;

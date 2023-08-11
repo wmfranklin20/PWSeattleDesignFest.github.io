@@ -125,7 +125,7 @@ button {
 #model-viewer {
     height: 650px;
     margin: 10px;
-    max-width: 600px;
+    max-width: 580px;
     animation-name: fadeSmooth;
     animation-duration: 2.5s;
     animation-timing-function: ease;

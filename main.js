@@ -66,8 +66,8 @@ function mainViewer() {
 
     /*Lighting setup*/
     /*Ambient Light for basic scene lighting*/
-    const ambientColor = new THREE.Color ( "rgb(255,255,255)" )
-    const ambientLight = new THREE.AmbientLight(ambientColor, 0.65);
+    const ambientColor = new THREE.Color ( "rgb(242,242,242)" )
+    const ambientLight = new THREE.AmbientLight(ambientColor, 0.5);
     scene.add(ambientLight);
 
     /*Primary spot light*/
@@ -76,35 +76,50 @@ function mainViewer() {
     scene.add(spotLight);
 
     const spotLightHelper = new THREE.SpotLightHelper( spotLight );
-    scene.add(spotLightHelper);
+    /*scene.add(spotLightHelper);*/
     
     spotLight.position.set (0,0,75);
     spotLight.castShadow = true;
-    spotLight.intensity = .25;
-    spotLight.angle = Math.PI / 16;
+    spotLight.intensity = 1.00;
+    spotLight.angle = Math.PI / 8;
     spotLight.penumbra = 1;
     spotLight.decay = 1;
     spotLight.distance = 0;
     spotLight.shadow.camera.near = 1;
     spotLight.shadow.camera.far = 4000;
     spotLight.shadow.camera.fov = 30;
-    spotLight.shadow.bias = 1;
-    spotLight.shadow.mapSize.width = 1024;
-    spotLight.shadow.mapSize.height = 1024;
+    spotLight.shadow.bias = -0.0005;
+    spotLight.shadow.mapSize.width = 1024*5;
+    spotLight.shadow.mapSize.height = 1024*5;
+
+    /*Frontlight*/
+    const frontColor = new THREE.Color ( "rgb(255,255,255)" );
+    const frontdirectionalLight = new THREE.DirectionalLight( frontColor );
+    frontdirectionalLight.position.set(50, 50, 75);
+    frontdirectionalLight.intensity = 0.65;
+    frontdirectionalLight.castShadow = true;
+    frontdirectionalLight.shadow.mapSize.width = 1024 * 5;
+    frontdirectionalLight.shadow.mapSize.height = 1024 * 5;
+    frontdirectionalLight.shadow.bias = -0.0005;
+    frontdirectionalLight.decay = 1;
+    frontdirectionalLight.distance = 100;
+    scene.add(frontdirectionalLight);
 
     /*Backlight*/
-    const backdirectionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    backdirectionalLight.position.set(50, 50, 75);
+    const backColor = new THREE.Color ( "rgb(255,255,255)" );
+    const backdirectionalLight = new THREE.DirectionalLight( backColor );
+    backdirectionalLight.position.set(-50, -50, 75);
+    backdirectionalLight.intensity = 0.35;
     backdirectionalLight.castShadow = true;
     backdirectionalLight.shadow.mapSize.width = 1024 * 5;
     backdirectionalLight.shadow.mapSize.height = 1024 * 5;
     backdirectionalLight.shadow.bias = -0.0005;
-    backdirectionalLight.decay = 10;
-    backdirectionalLight.distance = 0;
+    backdirectionalLight.decay = 1;
+    backdirectionalLight.distance = 100;
     scene.add(backdirectionalLight);
 
-    const baseColor = new THREE.Color ( "rgb(200, 200, 200)" );
-    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 25,25), new THREE.MeshPhongMaterial ({color:baseColor}));
+    const baseColor = new THREE.Color ( "rgb(222, 222, 222)" );
+    const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 35, 35), new THREE.MeshPhongMaterial ({color:baseColor}));
     scene.add(baseMesh);
     baseMesh.receiveShadow = true;
 

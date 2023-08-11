@@ -323,25 +323,33 @@ function mainViewer() {
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
                     object.visible = true;
-                    animateObject(object, 48, 1500*(5-index));
+                    animateObject(object, 48, 2500);
                 } else if (index === 1) {
                     object.visible = true;
-                    animateObject(object, 45, 1500*(5-index));
+                    animateObject(object, 45, 2000);
                 } else if (index === 2) {
                     object.visible = true;
-                    animateObject(object, 40, 1500*(5-index));
+                    animateObject(object, 40, 1500);
                 } else if (index === 3) {
                     object.visible = true;
-                    animateObject(object, 22, 1500*(5-index));
+                    animateObject(object, 22, 1500);
                 } else if (index === 4) {
                     object.visible = true;
-                    animateObject(object, 0, 1500*(5-index));
+                    animateObject(object, 0, 1500);
                 } 
             });
         } else if (state == 7) {
             headerTitleText.textContent = `Thanks for Joining!`;
             headerDescText.textContent = `Thank you for taking the time to explore our entry to the 2023 SDF Block Party! If you would like more information about the project please use the link below!`;
             animateCamera(new THREE.Vector3(25,25,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
+            loadedObjects.forEach((object, index) => {
+                if (index > 1) {
+                    object.visible = true;
+                    animateObject(object, 0, 1500*index);
+                } else {
+                    object.visible = false;
+                }
+            });
         } else {
             headerTitleText.textContent = `Whoops!`;
             headerDescText.textContent = `Looks like something broke on our end! Please hit back or next to return to the previous page!`;

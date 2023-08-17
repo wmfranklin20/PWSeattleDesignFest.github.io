@@ -316,7 +316,7 @@ function mainViewer() {
                 }
             });
         } else if (state == 6) {
-            headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
+            headerTitleText.textContent = `${state}. Up-Cycling & Future Use`;
             headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The linen is surplus from a clothing brand, and will be donated for use in the fabrication of clothing & accessories. The scaffolding & scrim will be re-used in future construction.`;
             animateCamera(new THREE.Vector3(-50, -50, 35), new THREE.Vector3(0,0,25), new THREE.Vector3(0,0,25), 3000);
             loadedObjects.forEach((object, index) => {

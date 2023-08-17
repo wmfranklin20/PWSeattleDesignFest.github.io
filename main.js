@@ -30,7 +30,6 @@ window.addEventListener('resize', updateWindowSize);
 function mainViewer() {
 
     let scene = new THREE.Scene();
-    scene.fog = new THREE.Fog (0xffffff, 10, 250);
 
     /*Locate and initialize wrapper*/
     let wrapper = document.getElementById('model-viewer');
@@ -119,7 +118,7 @@ function mainViewer() {
     backdirectionalLight.distance = 100;
     scene.add(backdirectionalLight);
 
-    const baseColor = new THREE.Color ( "rgb(222, 222, 222)" );
+    const baseColor = new THREE.Color ( "rgb(232, 232, 232)" );
     const baseMesh = new THREE.Mesh( new THREE.PlaneGeometry( 3500, 3500), new THREE.MeshPhongMaterial ({color:baseColor}));
     scene.add(baseMesh);
     baseMesh.receiveShadow = true;
@@ -319,14 +318,12 @@ function mainViewer() {
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
             headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The linen is surplus from a clothing brand, and will be donated for use in the fabrication of clothing & accesories. The scaffolding & scrim will be re-used in future construction.`;
-            animateCamera(new THREE.Vector3(-50, -50, 35), new THREE.Vector3(0,0,35), new THREE.Vector3(0,0,35), 3000);
+            animateCamera(new THREE.Vector3(-50, -50, 35), new THREE.Vector3(0,0,25), new THREE.Vector3(0,0,25), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
-                    object.visible = true;
-                    animateObject(object, 48, 2500);
+                    object.visible = false;
                 } else if (index === 1) {
-                    object.visible = true;
-                    animateObject(object, 45, 2000);
+                    object.visible = false;
                 } else if (index === 2) {
                     object.visible = true;
                     animateObject(object, 40, 1500);
@@ -345,9 +342,10 @@ function mainViewer() {
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
                     object.visible = true;
-                    animateObject(object, 0, 1500*index);
+                    animateObject(object, 0, 1500);
                 } else {
                     object.visible = false;
+                    animateObject(object, 0, 1500);
                 }
             });
         } else {

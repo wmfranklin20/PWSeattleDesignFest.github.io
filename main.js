@@ -337,7 +337,7 @@ function mainViewer() {
             });
         } else if (state == 7) {
             headerTitleText.textContent = `Thanks for Joining!`;
-            headerDescText.textContent = `Thank you for taking the time to explore our entry to the 2023 SDF Block Party! If you would like more information about the project please use the link below!`;
+            headerDescText.textContent = `Thank you for taking the time to explore our entry to the 2023 SDF Block Party!`;
             animateCamera(new THREE.Vector3(25,25,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {

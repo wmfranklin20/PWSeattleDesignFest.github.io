@@ -242,7 +242,7 @@ function mainViewer() {
         /*console.log(state);*/
         if (state == 0) {
             headerTitleText.textContent = `"UNFOLD"`;
-            headerDescText.textContent = `Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper undertanding of the intricate interplay between urban development, the reduction of green spaces, and the urban heat island effect in Seattle.`;         
+            headerDescText.textContent = `Join us in a journey that fuses art and science. As you wander through the space, you will have a deeper understanding of the intricate interplay between urban development, the reduction of green spaces, and the urban heat island effect in Seattle.`;         
             animateCamera(new THREE.Vector3(25,25,10), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 5000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
@@ -255,7 +255,7 @@ function mainViewer() {
             });
         } else if (state == 1) {
             headerTitleText.textContent = `${state}. Urban Heat Map Density`;
-            headerDescText.textContent = `The map shows a growing density of heat-absorbing surfaces and a reduction of vegetated space creating an urban heat island effect that is boosting temperatures. The intensity of these heat islands are mapped, with red representating the greatest heat.`;
+            headerDescText.textContent = `The map shows a growing density of heat-absorbing surfaces and a reduction of vegetated space creating an urban heat island effect that is boosting temperatures. The intensity of these heat islands are mapped, with red representing the greatest heat.`;
             animateCamera(new THREE.Vector3(15,-15,40), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
@@ -283,7 +283,7 @@ function mainViewer() {
             });
         } else if (state == 3) {
             headerTitleText.textContent = `${state}. Fabric Extrusion`;
-            headerDescText.textContent = `A coral woven linen fabric extrudes out from the curves at differnt lengths. These lengths represent the heat island intensity derived from the map resulting in an immersive experience, where color and translucency make for a dynamic space.`;
+            headerDescText.textContent = `A coral woven linen fabric extrudes out from the curves at different lengths. These lengths represent the heat island intensity derived from the map resulting in an immersive experience, where color and translucency make for a dynamic space.`;
             animateCamera(new THREE.Vector3(20,-20,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 1 || index === 2) {
@@ -294,7 +294,7 @@ function mainViewer() {
             });
         } else if (state == 4) {
             headerTitleText.textContent = `${state}. Frame Scaffolding`;
-            headerDescText.textContent = `Heat-absording surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. This effect can be mitigated by simple strategies like increasing tree canopy, installing green or cool roofs and installing permeable surfaces.`;
+            headerDescText.textContent = `Heat-absorbing surfaces, like building and roads, produce an urban heat island effect that is boosting temperatures. This effect can be mitigated by simple strategies like increasing tree canopy, installing green or cool roofs and installing permeable surfaces.`;
             animateCamera(new THREE.Vector3(25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1 && index < 4) {
@@ -304,8 +304,8 @@ function mainViewer() {
                 }
             });
         } else if (state == 5) {
-            headerTitleText.textContent = `${state}. Frame Fabric`;
-            headerDescText.textContent = `The pavilion is shrouded in a skrim mesh to provide a more immersive experience for users and to protect the fabric within from the elements.`;
+            headerTitleText.textContent = `${state}. Scaffolding Fabric`;
+            headerDescText.textContent = `The pavilion is shrouded in a scrim mesh to provide a more immersive experience for users and to protect the fabric within from the elements.`;
             animateCamera(new THREE.Vector3(-25,-25,5), new THREE.Vector3(0,0,10), new THREE.Vector3(0,0,10), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index > 1) {
@@ -317,7 +317,7 @@ function mainViewer() {
             });
         } else if (state == 6) {
             headerTitleText.textContent = `${state}. Up-Cycling and Future Use`;
-            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The linen is surplus from a clothing brand, and will be donated for use in the fabrication of clothing & accesories. The scaffolding & scrim will be re-used in future construction.`;
+            headerDescText.textContent = `The pavilion presents an up-cycled space generated from a grid system and sustainable materials. The linen is surplus from a clothing brand, and will be donated for use in the fabrication of clothing & accessories. The scaffolding & scrim will be re-used in future construction.`;
             animateCamera(new THREE.Vector3(-50, -50, 35), new THREE.Vector3(0,0,25), new THREE.Vector3(0,0,25), 3000);
             loadedObjects.forEach((object, index) => {
                 if (index === 0) {
